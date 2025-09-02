@@ -1,2 +1,0 @@
-It's required so that git stores an empty build folder,
-which is require by our Makefle

@@ -1,4 +1,23 @@
+# Fragment 1: Global flags (applies to all files)
 CompileFlags:
-  Add: [
-      "--sysroot=${PSPSDK}"
-  ]
+  CompilationDatabase: ./build
+  Add:
+    - "--sysroot=$PSPDEV/psp"
+
+---
+
+# For C files only
+If:
+  PathMatch: ".*\\.(c|h)$"
+CompileFlags:
+  Add:
+    - "-std=c23"
+
+---
+
+# For C++ files only
+If:
+  PathMatch: ".*\\.(cpp|hpp)$"
+CompileFlags:
+  Add:
+    - "-std=c++23"
