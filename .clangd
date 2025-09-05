@@ -1,2 +1,3 @@
-CompileFlags:
-  Compiler: psp-gcc
+Compiler: psp-gcc
+Add:
+  - "-std=c23"
