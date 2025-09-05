@@ -11,7 +11,7 @@ int main(void) {
   while (!WindowShouldClose()) {
     BeginDrawing();
     ClearBackground(WHITE);
-    DrawText("Sigma", 5, 30, 22, RED);
+    DrawText("Hello World", 5, 30, 22, RED);
     DrawFPS(5, 10);
     EndDrawing();
   }

@@ -26,6 +26,7 @@ target_compile_options(game
 )
 create_pbp_file(
   TARGET game
+  # CHANGE YOUR TITLE
   TITLE change this in CMakeLists.txt
   ICON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/assets/icon.png"
   BUILD_PRX=1
