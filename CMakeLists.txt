@@ -4,7 +4,6 @@ project(game)
 
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # PSP SDK
 set(PSPDEV $ENV{PSPDEV})
@@ -18,12 +17,6 @@ target_include_directories(game PRIVATE include)
 find_package(raylib REQUIRED)
 target_link_libraries(game PUBLIC raylib)
 
-# make clangd happy
-target_compile_options(game
-  PRIVATE
-    "--sysroot=${PSPDEV}/psp"
-    "-I${PSPDEV}/psp/include/c++/15.1.1"
-)
 create_pbp_file(
   TARGET game
   # CHANGE YOUR TITLE
