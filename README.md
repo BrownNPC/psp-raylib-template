@@ -1,14 +1,10 @@
 # Usage
 
-Assuming you have [pspdev](https://github.com/pspdev/pspdev/?tab=readme-ov-file#up-and-running)
+Assuming you have [pspdev](https://pspdev.github.io/installation.html)
 setup.
 
 
 
-And the following dependencies:
-```
-git make cmake fakeroot wget gpgme bsdtar
-```
 
 Just run this once
 ```
