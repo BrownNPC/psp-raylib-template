@@ -1,3 +1,10 @@
+# Table of Contents
+- [Usage](#usage)
+- [Getting auto complete](#getting-auto-complete)
+- [Using C++](#using-c)
+
+
+
 # Usage
 
 Assuming you have [pspdev](https://pspdev.github.io/installation.html)
@@ -46,3 +53,36 @@ The AI result is usually good.
 
 
 The query driver needs to be `--query-driver=/home/<YOURUSER>/pspdev/bin/psp-gcc`
+
+
+
+### Using C++
+
+I do not recommend this unless you already daily drive C++.
+**C23** already has many quality of life features from C++.
+
+first delete the current build directory
+```
+rm -fr build
+```
+
+then, [edit your query driver](#getting-auto-complete) line to use `psp-g++` instead of `psp-gcc`
+```
+--query-driver=/home/<YOURUSER>/pspdev/bin/psp-g++
+```
+
+
+
+
+next edit `.clangd` and replace the content with the following
+```
+Compiler: psp-g++
+Add:
+  - "-std=c++23"
+```
+
+Finally run
+```
+psp-cmake -B build
+```
+now you can cd into the build directory and use `make` as usual.
