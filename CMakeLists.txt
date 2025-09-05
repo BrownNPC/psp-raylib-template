@@ -5,9 +5,6 @@ project(game)
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_CXX_STANDARD 23)
 
-# PSP SDK
-set(PSPDEV $ENV{PSPDEV})
-
 file(GLOB SOURCES src/*.c src/*.cpp)
 
 add_executable(game ${SOURCES})
