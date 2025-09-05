@@ -1,2 +1,2 @@
 CompileFlags:
-  Compiler: psp-g++
+  Compiler: psp-gcc

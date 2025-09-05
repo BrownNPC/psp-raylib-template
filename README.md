@@ -45,4 +45,4 @@ For example `vscode clangd set query driver`
 The AI result is usually good.
 
 
-The query driver needs to be `--query-driver=/home/<YOURUSER>/pspdev/bin/psp-g++`
+The query driver needs to be `--query-driver=/home/<YOURUSER>/pspdev/bin/psp-gcc`
