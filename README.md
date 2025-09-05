@@ -39,7 +39,7 @@ If you use a terminal based editor, you need to configure it as a Language Serve
 
 
 You need to google how to do it in your editor.
-For example "<my editor> clangd set query driver"
+For example `vscode clangd set query driver`
 
 
 The AI result is usually good.
