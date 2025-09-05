@@ -1,2 +1,4 @@
 CompileFlags:
   Compiler: psp-g++
+  Add:
+    - "-std=c++23"
