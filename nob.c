@@ -26,7 +26,7 @@ void print_usage() {
       "  build         compile to dist folder\n"
       "  help          Show this help message\n"
       "  run           runs ./dist/desktop/game\n"
-      "  run-win       runs ./dist/desktop/game.exe\n";
+      "  run-win       runs ./dist/desktop/game.exe (intended for WSL) \n";
   printf(usage, "");
 }
 
@@ -86,7 +86,7 @@ void handle_arg(const char *arg, Nob_Cmd *cmd) {
     nob_cmd_run(cmd); // run tree
     // user experience :)
     nob_log(INFO, "Compiled to dist folder");
-    // ----- BUInLD -----
+    // ----- RUN -----
   } else if (!strcmp(arg, "run")) {
     if (!nob_set_current_dir("./dist/desktop")) {
       nob_log(NOB_ERROR,
@@ -95,6 +95,20 @@ void handle_arg(const char *arg, Nob_Cmd *cmd) {
       print_usage();
       return;
     }
+    nob_cmd_append(cmd, "./game");
+    nob_cmd_run(cmd);
+    // ----- RUN WIN -----
+  } else if (!strcmp(arg, "run-win")) {
+    if (!nob_set_current_dir("./dist/desktop")) {
+      nob_log(NOB_ERROR,
+              "./dist/desktop not found. build for desktop first using ./nob "
+              "prepare-desktop or ./nob prepare-desktop-win");
+      print_usage();
+      return;
+    }
+    nob_cmd_append(cmd, "./game.exe");
+    nob_cmd_run(cmd);
+
     // ----- HELP -----
   } else if (!strcmp(arg, "help")) {
     print_usage();

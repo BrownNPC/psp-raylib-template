@@ -1,6 +1,5 @@
 // Import required psp boilerplate
 #include "pspBoilerplate.h"
-
 #include <raylib.h>
 int main(void) {
   // 2.6x smaller than 1280x720
