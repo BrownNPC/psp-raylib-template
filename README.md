@@ -7,25 +7,22 @@
 
 # Usage
 
-Assuming you have [pspdev](https://pspdev.github.io/installation.html)
-setup.
+Assuming you have [pspdev](https://pspdev.github.io/installation.html) setup for your OS.
 
 
-
-
-Just run this once
+Just run this once in your terminal.
 ```
-psp-pacman -Sy raylib
+cc -o nob nob.c
 ```
 
-Now to setup a build directory run
+Now prepare the project.
 ```
-psp-cmake -B build
+./nob prepare-psp
 ```
 
-then `cd` into the build directory
+then build it.
 ```
-cd build
+./nob build
 ```
 
 to build/rebuild your project type `make` which will produce an `EBOOT.PBP`.
@@ -41,48 +38,7 @@ and `main.cpp`
 ## Getting auto complete
 
 ### You must use Clangd as your language server.
+
 You can install it as an extension in VSCode.
 If you use a terminal based editor, you need to configure it as a Language Server.
 
-
-You need to google how to do it in your editor.
-For example `vscode clangd set query driver`
-
-
-The AI result is usually good.
-
-
-The query driver needs to be `--query-driver=/home/<YOURUSER>/pspdev/bin/psp-gcc`
-
-
-
-### Using C++
-
-I do not recommend this unless you already daily drive C++.
-**C23** already has many quality of life features from C++.
-
-first delete the current build directory
-```
-rm -fr build
-```
-
-then, [edit your query driver](#getting-auto-complete) line to use `psp-g++` instead of `psp-gcc`
-```
---query-driver=/home/<YOURUSER>/pspdev/bin/psp-g++
-```
-
-
-
-
-next edit `.clangd` and replace the content with the following
-```
-Compiler: psp-g++
-Add:
-  - "-std=c++23"
-```
-
-Finally run
-```
-psp-cmake -B build
-```
-now you can cd into the build directory and use `make` as usual.
