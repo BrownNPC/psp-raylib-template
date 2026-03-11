@@ -1,9 +1,6 @@
 #define NOB_IMPLEMENTATION
-<<<<<<< HEAD
-#include "nob.h"
-=======
+
 #include "include/nob.h"
->>>>>>> a8190e6 (add nob build script runner)
 
 #include <stdio.h>
 #include <string.h>
