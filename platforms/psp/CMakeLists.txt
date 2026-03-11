@@ -33,4 +33,16 @@ create_pbp_file(
   ENC_PRX=1
 )
 
-file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}) 
+# Copy assets at build time
+add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_CURRENT_SOURCE_DIR}/assets
+        ${CMAKE_CURRENT_SOURCE_DIR}/dist/psp/assets
+)
+
+# Copy the built EBOOT.PBP after building
+add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_BINARY_DIR}/EBOOT.PBP
+        ${CMAKE_CURRENT_SOURCE_DIR}/dist/psp/EBOOT.PBP
+)
