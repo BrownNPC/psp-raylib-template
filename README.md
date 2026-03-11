@@ -16,17 +16,17 @@
 Assuming you have [pspdev](https://pspdev.github.io/installation.html) setup for your OS.
 
 Just run this once in your terminal.
-```
+```sh
 cc -o nob nob.c
 ```
 
 Now prepare the project.
-```
+```sh
 ./nob prepare-psp
 ```
 
 Then build it.
-```
+```sh
 ./nob build
 ```
 Inside `dist/psp` There would be EBOOT.PBP, run it using PPSSPP.
@@ -43,28 +43,28 @@ Speaking of code, the code is inside the `src/` folder!
 
 # Running on desktop
 
-```
+```sh
 ./nob prepare-desktop
 ```
 
 OR to cross-compile for Windows
 
-```
+```sh
 ./nob prepare-desktop-win
 ```
 
 then build it!
 
-```
+```sh
 ./nob build
 ```
 
 Then launch it using
-```
+```sh
 ./nob run
 ```
 OR
-```
+```sh
 ./nob run-win
 ```
 
