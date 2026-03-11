@@ -9,23 +9,21 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # PSP SDK
 set(PSPDEV $ENV{PSPDEV})
 
-file(GLOB SOURCES src/*.c src/*.cpp)
-
+# add sources
+file(GLOB SOURCES CONFIGURE_DEPENDS src/*.c src/*.cpp)
 add_executable(game ${SOURCES})
-target_include_directories(game PRIVATE include)
+target_include_directories(game PRIVATE include/)
 
 # Link with raylib
 find_package(raylib REQUIRED)
 target_link_libraries(game PUBLIC raylib)
 
 # make clangd happy
-target_compile_options(game
-  PRIVATE
-    "--sysroot=${PSPDEV}/psp"
-    "-I=${PSPDEV}/psp/include"
-    "-I=${PSPDEV}/psp/sdk/include"
-    "-I${PSPDEV}/psp/include/c++/15.1.1"
+file(GLOB GCC_INCLUDE_DIR "${PSPDEV}/lib/gcc/psp/*/include")
+target_compile_options(game PRIVATE
+    -isystem ${GCC_INCLUDE_DIR}
 )
+
 create_pbp_file(
   TARGET game
   TITLE change this in CMakeLists.txt

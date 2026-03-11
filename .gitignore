@@ -1,6 +1,2 @@
 build/*
-!build/.gitkeep
-EBOOT.PBP
-compile_commands.json
-PARAM.SFO
 .cache/*
