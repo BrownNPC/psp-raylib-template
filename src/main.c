@@ -1,11 +1,11 @@
 // Import required psp boilerplate
 #include "pspBoilerplate.h"
 #include <raylib.h>
+
 int main(void) {
   // 2.6x smaller than 1280x720
   const int screenWidth = 480;
   const int screenHeight = 270;
-
   InitWindow(screenWidth, screenHeight, "Change this in main.cpp");
 
   while (!WindowShouldClose()) {

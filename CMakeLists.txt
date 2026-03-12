@@ -1,10 +1,11 @@
-# from https://github.com/raysan5/raylib/blob/master/projects/CMake/CMakeLists.txt
 cmake_minimum_required(VERSION 3.17)
 
 project(game)
 
 set(CMAKE_C_STANDARD 23)
+set(CMAKE_C_EXTENSIONS ON)
 set(CMAKE_CXX_STANDARD 23)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # PSP SDK
@@ -17,39 +18,33 @@ add_executable(game ${SOURCES})
 target_include_directories(game PRIVATE include/)
 
 # Link with raylib
-set(RAYLIB_VERSION 5.5)
-find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
-set(FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/external")
-if (NOT raylib_FOUND) # If there's none, fetch and build raylib
-  include(FetchContent)
-  FetchContent_Declare(
-    raylib
-    DOWNLOAD_EXTRACT_TIMESTAMP OFF
-    URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
-  )
-  FetchContent_GetProperties(raylib)
-  if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
-    set(FETCHCONTENT_QUIET NO)
-    FetchContent_MakeAvailable(raylib)
-  endif()
-endif()
+find_package(raylib REQUIRED)
 target_link_libraries(game PUBLIC raylib)
+
+# make clangd happy
+file(GLOB GCC_INCLUDE_DIR "${PSPDEV}/lib/gcc/psp/*/include")
+target_compile_options(game PRIVATE
+    -isystem ${GCC_INCLUDE_DIR}
+)
+
+create_pbp_file(
+  TARGET game
+  TITLE change this in CMakeLists.txt
+  ICON_PATH "${CMAKE_CURRENT_SOURCE_DIR}/assets/icon.png"
+  BUILD_PRX=1
+  ENC_PRX=1
+)
 
 # Copy assets at build time
 add_custom_command(TARGET game POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_CURRENT_SOURCE_DIR}/assets
-        ${CMAKE_CURRENT_SOURCE_DIR}/dist/desktop/assets
+        ${CMAKE_CURRENT_SOURCE_DIR}/dist/psp/assets
 )
-set(EXECUTABLE_NAME game)
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(EXECUTABLE_NAME game.exe)
-endif()
-
-# Copy the built game executable after building
+# Copy the built EBOOT.PBP after building
 add_custom_command(TARGET game POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
-        ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE_NAME}
-        ${CMAKE_CURRENT_SOURCE_DIR}/dist/desktop/${EXECUTABLE_NAME}
+        ${CMAKE_CURRENT_BINARY_DIR}/EBOOT.PBP
+        ${CMAKE_CURRENT_SOURCE_DIR}/dist/psp/EBOOT.PBP
 )
